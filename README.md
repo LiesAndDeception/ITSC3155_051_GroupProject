@@ -1,3 +1,8 @@
+# ITSC3155_051_GroupProject
+Group Project Repository for ITSC3155-051
+
+
+
 ### Installing necessary packages:  
 * `pip install fastapi`
 * `pip install "uvicorn[standard]"`  

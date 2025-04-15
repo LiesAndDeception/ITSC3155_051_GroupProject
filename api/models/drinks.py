@@ -5,11 +5,11 @@ from ..dependencies.database import Base
 
 
 class Sandwich(Base):
-    __tablename__ = "sandwiches"
+    __tablename__ = "drinks"
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    sandwich_name = Column(String(100), unique=True, nullable=True)
+    drink_name = Column(String(100), unique=True, nullable=True)
     price = Column(DECIMAL(4, 2), nullable=False, server_default='0.0')
 
-    recipes = relationship("Recipe", back_populates="sandwich")
-    order_details = relationship("OrderDetail", back_populates="sandwich")
+    recipes = relationship("Recipe", back_populates="drink")
+    order_details = relationship("OrderDetail", back_populates="drink")

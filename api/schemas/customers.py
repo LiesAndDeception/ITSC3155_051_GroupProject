@@ -9,7 +9,7 @@ class CustomerBase(BaseModel):
 class CustomerCreate(CustomerBase):
     pass
 
-class CustomerOut(CustomerBase):
+class Customer(CustomerBase):
     id: int
 
     class Config:

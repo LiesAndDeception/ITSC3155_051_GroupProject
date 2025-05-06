@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from sqlalchemy import desc
 from fastapi import HTTPException, status, Response, Depends
 from ..models import orders as model
 from sqlalchemy.exc import SQLAlchemyError
@@ -68,3 +69,30 @@ def delete(db: Session, item_id):
         error = str(e.__dict__['orig'])
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+
+def read_all_by_date(db: Session):
+    try:
+        result = db.query(model.Order).order_by(model.Order.order_date).all()
+    except SQLAlchemyError as e:
+        error = str(e.__dict__['orig'])
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
+    return result
+
+
+def read_all_by_status(db: Session):
+    try:
+        result = db.query(model.Order).order_by(desc(model.Order.order_status)).all()
+    except SQLAlchemyError as e:
+        error = str(e.__dict__['orig'])
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
+    return result
+
+
+def read_all_by_number(db: Session):
+    try:
+        result = db.query(model.Order).order_by(model.Order.order_number).all()
+    except SQLAlchemyError as e:
+        error = str(e.__dict__['orig'])
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
+    return result

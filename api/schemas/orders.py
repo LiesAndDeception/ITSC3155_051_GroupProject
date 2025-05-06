@@ -30,3 +30,17 @@ class Order(OrderBase):
     
     class ConfigDict:
         from_attributes = True
+
+
+
+
+class OrderStatusReceived(BaseModel):
+    order_status: Optional[str] = "Received"
+
+
+class OrderStatusInProgress(BaseModel):
+    order_status: Optional[str] = "In Progress"
+
+
+class OrderStatusCompleted(BaseModel):
+    order_status: Optional[str] = "Completed"

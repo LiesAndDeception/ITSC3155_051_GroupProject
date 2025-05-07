@@ -33,3 +33,13 @@ def update(item_id: int, request: schema.DeliveryUpdate, db: Session = Depends(g
 @router.delete("/{item_id}")
 def delete(item_id: int, db: Session = Depends(get_db)):
     return controller.delete(db=db, item_id=item_id)
+
+
+@router.put("_out_for_delivery/{item_id}", response_model=schema.Delivery)
+def update_in_progress(item_id: int, request: schema.DeliveryStatusOutForDelivery, db: Session = Depends(get_db)):
+    return controller.update(db=db, request=request, item_id=item_id)
+
+
+@router.put("_delivered/{item_id}", response_model=schema.Delivery)
+def update_completed(item_id: int, request: schema.DeliveryStatusDelivered, db: Session = Depends(get_db)):
+    return controller.update(db=db, request=request, item_id=item_id)

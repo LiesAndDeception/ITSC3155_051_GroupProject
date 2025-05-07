@@ -1,27 +1,25 @@
-from typing import Optional
 from pydantic import BaseModel
-
-
+from typing import Optional
 
 class PaymentInformationBase(BaseModel):
-    card_information = int
-    transaction_status = str
-    transaction_type = str
+    order_id: int
+    payment_method: str
+    card_information: Optional[int] = None
+    transaction_status: str
+    transaction_type: str
+    amount: float
 
+    class Config:
+        orm_mode = True
 
 class PaymentInformationCreate(PaymentInformationBase):
     pass
 
-
-class PaymentInformationUpdate(BaseModel):
-    card_information: Optional[int] = None
-    transaction_status: Optional[str] = None
-    transaction_type: Optional[str] = None
-
+class PaymentInformationUpdate(PaymentInformationBase):
+    pass
 
 class PaymentInformation(PaymentInformationBase):
     id: int
 
-
-    class ConfigDict:
-        from_attributes = True
+    class Config:
+        orm_mode = True

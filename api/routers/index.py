@@ -6,3 +6,4 @@ def load_routes(app):
     app.include_router(order_details.router)
     app.include_router(order_mgmt.router)
     app.include_router(deliveries.router)
+    app.include_router(customers.router)
